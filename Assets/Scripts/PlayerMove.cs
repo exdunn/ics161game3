@@ -62,7 +62,7 @@ public class PlayerMove : MonoBehaviour {
 				GetComponent<SpriteRenderer> ().sprite = jumpSprite;
 			}
 
-			if (Input.GetKeyDown ("up") && canJump) { // Jump, if the player can
+			if (Input.GetKeyDown ("up") || Input.GetKeyDown ("space") && canJump) { // Jump, if the player can
 				playerRB.velocity = new Vector2 (playerRB.velocity.x, jump);
 			}
 		}
