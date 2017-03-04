@@ -39,6 +39,6 @@ public class MyGameManager : MonoBehaviour {
     // go to main menu
     public void ExitClick()
     {
-
+        SceneManager.LoadScene("Main Menu");
     }
 }
