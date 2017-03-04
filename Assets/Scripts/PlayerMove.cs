@@ -29,6 +29,15 @@ public class PlayerMove : MonoBehaviour {
 	//Game Variables
 	private bool gameOver = false;
 
+    // Player Health
+    private PlayerHealth ph;
+    
+    void Awake ()
+    {
+        // set ph to player health
+        ph = GetComponent<PlayerHealth>();
+    }
+
 	// Use this for initialization
 	void Start () {
 		canJump = true;
@@ -37,6 +46,13 @@ public class PlayerMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () { //Left/Right Movement and calling Jumps
+
+        // if cur health reaches 0, player 1 loses
+        if (ph.curHealth < 1)
+        {
+            WinLoseText.text = "PLAYER 2 WINS!";
+            gameOver = true;
+        }
 
 		if (!gameOver) { // Flip the sprite when moving
 			if (playerRB.velocity.x < 0 && facingLeft == false) {
@@ -62,7 +78,7 @@ public class PlayerMove : MonoBehaviour {
 				GetComponent<SpriteRenderer> ().sprite = jumpSprite;
 			}
 
-			if (Input.GetKeyDown ("up") || Input.GetKeyDown ("space") && canJump) { // Jump, if the player can
+			if (Input.GetKeyDown ("w") || Input.GetKeyDown ("space") && canJump) { // Jump, if the player can
 				playerRB.velocity = new Vector2 (playerRB.velocity.x, jump);
 			}
 		}
@@ -71,9 +87,12 @@ public class PlayerMove : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) //die if hitting out of bounds or bullets or whatever. Currently, just die if hit by anything
 	{
 		if (other.gameObject.CompareTag ("Death")) {
-			WinLoseText.text = "PLAYER 2 WINS!";
-			gameOver = true;
-		} else if (other.gameObject.CompareTag ("Goal")) {
+
+            // if player is alive then deal damage
+            if (ph.curHealth > 0)
+                ph.AdjustCurHealth(-1);
+
+        } else if (other.gameObject.CompareTag ("Goal")) {
 			WinLoseText.text = "PLAYER 1 WINS!";
 			gameOver = true;
 		}
