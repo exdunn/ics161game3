@@ -86,13 +86,18 @@ public class PlayerMove : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) //die if hitting out of bounds or bullets or whatever. Currently, just die if hit by anything
 	{
-		if (other.gameObject.CompareTag ("Death")) {
-
+        // if hit by bullet
+		if (other.gameObject.CompareTag ("Bullet")) {
             // if player is alive then deal damage
             if (ph.curHealth > 0)
-                ph.AdjustCurHealth(-1);
-
-        } else if (other.gameObject.CompareTag ("Goal")) {
+                ph.AdjustCurHealth(-1); 
+        }
+        // if the camera catches up with the player
+        else if (other.gameObject.CompareTag("Death")) {
+            ph.AdjustCurHealth(-ph.curHealth);
+        }
+        // if player reaches the goal
+        else if (other.gameObject.CompareTag ("Goal")) {
 			WinLoseText.text = "PLAYER 1 WINS!";
 			gameOver = true;
 		}
