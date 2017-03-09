@@ -14,10 +14,12 @@ public class OnClickGun : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		GameObject bulletObj = Instantiate (bullet, transform.position, Quaternion.identity);
-		bulletObj.GetComponent<Bullet>().setDirection(directionNum);
-		canFire = false;
-		StartCoroutine (Cooldown ());
+		if (canFire) {
+			GameObject bulletObj = Instantiate (bullet, transform.position, Quaternion.identity);
+			bulletObj.GetComponent<Bullet> ().setDirection (directionNum);
+			canFire = false;
+			StartCoroutine (Cooldown ());
+		}
 	}
 
 	IEnumerator Cooldown() //Cooldown for gun.

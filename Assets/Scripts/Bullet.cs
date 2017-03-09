@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) //destroy bullet
 	{
-		if (other.gameObject.CompareTag("Wall"))
+		if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player"))
 		{
 			Destroy (this.gameObject);
 		}
