@@ -44,7 +44,7 @@ public class SpawnObjects : MonoBehaviour {
                 index += 1;
             modeText.text = "Mode: " + modes[index];
         }
-        if (Input.GetMouseButtonUp(0) && bombCd == 0 && index == 0)
+        if (Input.GetMouseButtonUp(1) && bombCd == 0 && index == 0)
         {
             bombCd = 20;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
@@ -52,7 +52,7 @@ public class SpawnObjects : MonoBehaviour {
             bombCdText.text = "BombCd: " + bombCd.ToString();
             StartCoroutine("BombCd");
         }
-        if (Input.GetMouseButtonUp(0) && enemyCd == 0 && index == 1)
+        if (Input.GetMouseButtonUp(1) && enemyCd == 0 && index == 1)
         {
             enemyCd = 20;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
