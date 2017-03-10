@@ -9,8 +9,8 @@ public class MovePlatform : MonoBehaviour {
     private float xStart;
     private float xEnd;
 
-    public float lapSize = 15;
-    public float speed = 20f;
+    public float lapSize = 15f;
+    public float speed = 3f;
 
 	// Use this for initialization
 	void Start () {
@@ -48,5 +48,23 @@ public class MovePlatform : MonoBehaviour {
                 forward = true;
         }
         transform.position = new Vector3(xMove, transform.position.y, transform.position.z);
+    }
+
+    void OnCollisionStay2D (Collision2D other)
+    {
+        // set player's parent to the platform
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.SetParent(transform);
+        }
+    }
+
+    void OnCollisionExit2D (Collision2D other)
+    {
+        // remove player's parent
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.SetParent(null);
+        }
     }
 }
