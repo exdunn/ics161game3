@@ -8,14 +8,27 @@ public class PlayerHealth : MonoBehaviour {
     public int curHealth = 5;
     public Sprite heart;
 
-	// Use this for initialization
-	void Start () {
+    // invulnerability
+    private bool isInvuln = false;
+    private float invulnDur = 1.5f;
+    private float invulnTimer = 0.0f;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (isInvuln)
+        {
+            invulnTimer += Time.deltaTime;
+            if (invulnTimer >= invulnDur)
+            {
+                isInvuln = false;
+                invulnTimer = 0.0f;
+            }
+        }
 	}
 
     // display current health as hearts on screen
@@ -40,18 +53,38 @@ public class PlayerHealth : MonoBehaviour {
     // add to players current health
     public void AdjustCurHealth(int adj)
     {
-        curHealth += adj;
-        if (curHealth < 0)
+        // if invulnerable do nothing
+        if (!isInvuln)
         {
-            curHealth = 0;
+            StartCoroutine(Flasher());
+            // make player invulnerable
+            isInvuln = true;
+
+            curHealth += adj;
+            if (curHealth < 0)
+            {
+                curHealth = 0;
+            }
+            if (curHealth > maxHealth)
+            {
+                curHealth = maxHealth;
+            }
+            if (maxHealth < 1)
+            {
+                maxHealth = 1;
+            }
         }
-        if (curHealth > maxHealth)
+    }
+
+    // make player flash while invulnerable
+    IEnumerator Flasher ()
+    {
+        for (int i = 0; i < 10; i++)
         {
-            curHealth = maxHealth;
-        }
-        if (maxHealth < 1)
-        {
-            maxHealth = 1;
+            GetComponent<Renderer>().material.color = Color.red;
+            yield return new WaitForSeconds(.15f);
+            GetComponent<Renderer>().material.color = Color.white;
+            yield return new WaitForSeconds(.15f);
         }
     }
 }

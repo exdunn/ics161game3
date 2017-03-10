@@ -103,7 +103,7 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
-	private void Flip(){ //flip the player
+	private void Flip() { //flip the player
 
 		facingLeft = !facingLeft;
 
