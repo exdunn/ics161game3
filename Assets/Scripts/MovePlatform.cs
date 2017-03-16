@@ -5,18 +5,28 @@ using UnityEngine;
 public class MovePlatform : MonoBehaviour {
 
     
-    private bool forward;
     private float xStart;
     private float xEnd;
 
+    public bool startLeft;
+    public bool forward;
     public float lapSize = 15f;
     public float speed = 3f;
 
 	// Use this for initialization
 	void Start () {
         xStart = transform.position.x;
-        xEnd = transform.position.x + lapSize;
-        forward = true;
+        if (startLeft == true)
+        {
+            xEnd = transform.position.x - lapSize;
+            forward = false;
+        }
+        else
+        { 
+            xEnd = transform.position.x + lapSize;
+            forward = true;
+        }
+
 
 
         Debug.Log("start: " + xStart);
@@ -33,20 +43,36 @@ public class MovePlatform : MonoBehaviour {
     {
         float xMove = 0f;
 
-        if (forward)
+        if (forward && !startLeft)
         {
             xMove = transform.position.x + speed * Time.deltaTime;
 
             if (transform.position.x >= xEnd)
                 forward = false;
         }
-        else
+        else if (!forward && startLeft)
+        {
+            xMove = transform.position.x - speed * Time.deltaTime;
+
+            if (transform.position.x <= xEnd)
+                forward = true;
+        }
+        else if(!startLeft && !forward) 
         {
             xMove = transform.position.x - speed * Time.deltaTime;
 
             if (transform.position.x <= xStart)
                 forward = true;
         }
+
+        else if (startLeft && forward)
+        {
+            xMove = transform.position.x + speed * Time.deltaTime;
+
+            if (transform.position.x >= xStart)
+                forward = false;
+        }
+
         transform.position = new Vector3(xMove, transform.position.y, transform.position.z);
     }
 

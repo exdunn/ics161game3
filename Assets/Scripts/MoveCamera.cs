@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class MoveCamera : MonoBehaviour {
@@ -63,9 +64,6 @@ public class MoveCamera : MonoBehaviour {
 		} else if (transform.position.x > 85.5) {
 			map1eight = false;
 		}
-
-
-
 		if (map1first || map1fifth) {
 			Down ();
 		} else if (map1second || map1fourth || map1sixth || map1eight) {
