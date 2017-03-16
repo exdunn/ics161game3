@@ -9,7 +9,11 @@ Repository:
 https://github.com/exdunn/ics161game3 - Please add kyle-copeland as a collaberator if your git repo is private.
 
 Summary:
-<GAME SUMMARY 1-3 Sentences>
+Cat-And-Mouse is a versus multiplayer game between two players, one of whom uses the keyboard to control an
+avatar on the screen, with the other using the mouse to manipulate the objects on the screen. The keyboard
+player (the "Cat") attempts to manuever through an automatically scrolling maze, trying to make it to the
+end unscathed. The mouse player (Aptly, the "Mouse") can click on various traps throughout the maze or spawn
+hazards to try and stop or kill the keyboard player.
 
 Player Experience:
 The player using the mouse should experience a feeling of power, of having many options available to them
