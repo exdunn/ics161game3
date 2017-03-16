@@ -2,7 +2,7 @@ Game 3 Submission
 -----------------
 Teammates:
 1. andretc1 : 28676301
-2. <UCINETID> : <STUDENT ID NUMBER>
+2. psfang : 84351619
 3. <UCINETID> : <STUDENT ID NUMBER>
 
 Repository:
