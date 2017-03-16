@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MoveCamera : MonoBehaviour {
+public class MoveCamera : MonoBehaviour
+{
 
     private GameObject player;
     public float speed = 1f;
@@ -12,21 +13,22 @@ public class MoveCamera : MonoBehaviour {
     // chooses which path the camera follows
     public int mapNumber;
 
-	//For Map1
-	private bool map1first;
-	private bool map1second;
-	private bool map1third;
-	private bool map1fourth;
-	private bool map1fifth;
-	private bool map1sixth;
-	private bool map1seventh;
-	private bool map1eight;
+    //For Map1
+    private bool map1first;
+    private bool map1second;
+    private bool map1third;
+    private bool map1fourth;
+    private bool map1fifth;
+    private bool map1sixth;
+    private bool map1seventh;
+    private bool map1eight;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
-        
-        switch(mapNumber)
+
+        switch (mapNumber)
         {
             case 1:
                 MapOneStart();
@@ -35,15 +37,16 @@ public class MoveCamera : MonoBehaviour {
                 Debug.Log("Error: No map selected");
                 break;
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         //float xCoord = transform.position.x + Time.deltaTime * speed;
         //float yCoord = player.transform.position.y;
         //transform.position = new Vector3(xCoord, yCoord, transform.position.z);
-        
+
         // different camera movement for each map
         switch (mapNumber)
         {
@@ -57,10 +60,10 @@ public class MoveCamera : MonoBehaviour {
             // map three (exdunn)
             case 3:
                 break;
-            default:       
+            default:
                 break;
         }
-	}
+    }
 
     // start for map one
     private void MapOneStart()
@@ -76,7 +79,7 @@ public class MoveCamera : MonoBehaviour {
     }
 
     // follow path for map one
-    private void MapOnePath ()
+    private void MapOnePath()
     {
         if (transform.position.y < 5.5 && map1first == true)
         {
@@ -134,18 +137,21 @@ public class MoveCamera : MonoBehaviour {
         }
     }
 
-	void Right(){
-		float xCoord = transform.position.x + Time.deltaTime * speed;
-		transform.position = new Vector3(xCoord, transform.position.y, transform.position.z);
-	}
+    void Right()
+    {
+        float xCoord = transform.position.x + Time.deltaTime * speed;
+        transform.position = new Vector3(xCoord, transform.position.y, transform.position.z);
+    }
 
-	void Down(){
-		float yCoord = transform.position.y - Time.deltaTime * speed;
-		transform.position = new Vector3(transform.position.x, yCoord, transform.position.z);
-	}
+    void Down()
+    {
+        float yCoord = transform.position.y - Time.deltaTime * speed;
+        transform.position = new Vector3(transform.position.x, yCoord, transform.position.z);
+    }
 
-	void Up(){
-		float yCoord = transform.position.y + Time.deltaTime * speed;
-		transform.position = new Vector3(transform.position.x, yCoord, transform.position.z);
-	}
+    void Up()
+    {
+        float yCoord = transform.position.y + Time.deltaTime * speed;
+        transform.position = new Vector3(transform.position.x, yCoord, transform.position.z);
+    }
 }
