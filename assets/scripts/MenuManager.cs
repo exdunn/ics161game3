@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour {
 
     public void StartClick ()
     {
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Level Selection");
     }
 
     public void InstrClick ()

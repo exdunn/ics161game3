@@ -96,18 +96,25 @@ public class PlayerMove : MonoBehaviour {
             if (ph.curHealth > 0)
                 ph.AdjustCurHealth(-1); 
         }
+        // if hit by flame
+        if (other.gameObject.CompareTag("Flame"))
+        {
+            // if player is alive then deal damage
+            if (ph.curHealth > 0)
+                ph.AdjustCurHealth(-2);
+        }
         // if the camera catches up with the player
         else if (other.gameObject.CompareTag("Death")) {
             ph.AdjustCurHealth(-ph.curHealth);
         }
         // if player goes through portal
         else if (other.gameObject.CompareTag("Portal")) {
-           
             Vector3 end = other.transform.FindChild("Exit").transform.position;
-            myCamera.transform.position = transform.position;
-
             Debug.Log("child: " + end);
             transform.position = end;
+
+            // move camera when Leafie teleports
+            myCamera.GetComponent<MoveCamera>().OnLeafieTeleport();
         }
         // if player reaches the goal
         else if (other.gameObject.CompareTag ("Goal")) {

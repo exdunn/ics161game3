@@ -144,16 +144,16 @@ public class MoveCamera : MonoBehaviour
         }
     }
 
-    // for map two camera moves towards goal always
+    // for map two camera moves towards goal always, ignoring z coordinate
     private void MapTwoPath()
     {
-        Debug.Log(goal);
-        transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(goal.x, goal.y, transform.position.z), speed * Time.deltaTime);
     }
 
+    // Move camera to Leafie's position when he teleports
     public void OnLeafieTeleport ()
     {
-        transform.position = player.transform.position; 
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z); 
     }
 
     void Right()

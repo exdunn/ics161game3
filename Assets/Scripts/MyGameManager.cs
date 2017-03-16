@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class MyGameManager : MonoBehaviour {
 
     public GameObject menu;
+    private int mapNumber;
 
 	// Use this for initialization
 	void Start () {
-		
+        // find which map is being played
+        mapNumber = GameObject.
+            FindGameObjectWithTag("MainCamera").
+            GetComponent<MoveCamera>().
+            mapNumber;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +37,12 @@ public class MyGameManager : MonoBehaviour {
     // restart level
     public void RestartClick ()
     {
-        SceneManager.LoadScene("Main Scene");
+        if (mapNumber == 1)
+            SceneManager.LoadScene("Main Scene");
+        else if (mapNumber == 2)
+            SceneManager.LoadScene("Poof");
+        else if (mapNumber == 3)
+            SceneManager.LoadScene("Alex Level");
     }
 
 
