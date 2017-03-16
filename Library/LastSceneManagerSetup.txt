@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Poof.unity
+=======
+- path: Assets/Scenes/Main Menu.unity
+>>>>>>> origin/master
   isLoaded: 1
   isActive: 1

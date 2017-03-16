@@ -78,7 +78,7 @@ public class PlayerMove : MonoBehaviour {
 				GetComponent<SpriteRenderer> ().sprite = jumpSprite;
 			}
 
-			if (Input.GetKeyDown ("w") || Input.GetKeyDown ("space") && canJump) { // Jump, if the player can
+			if ((Input.GetKeyDown ("w") || Input.GetKeyDown ("space")) && canJump) { // Jump, if the player can
 				playerRB.velocity = new Vector2 (playerRB.velocity.x, jump);
 			}
 		}
@@ -95,6 +95,14 @@ public class PlayerMove : MonoBehaviour {
         // if the camera catches up with the player
         else if (other.gameObject.CompareTag("Death")) {
             ph.AdjustCurHealth(-ph.curHealth);
+        }
+        // if player goes through portal
+        else if (other.gameObject.CompareTag("Portal")) {
+           
+            Vector3 end = other.transform.FindChild("Exit").transform.position;
+
+            Debug.Log("child: " + end);
+            transform.position = end;
         }
         // if player reaches the goal
         else if (other.gameObject.CompareTag ("Goal")) {
