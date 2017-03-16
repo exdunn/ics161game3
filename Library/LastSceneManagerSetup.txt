@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Poof.unity
-=======
-- path: Assets/Scenes/Main Menu.unity
->>>>>>> origin/master
+- path: Assets/Scenes/Alex Level.unity
   isLoaded: 1
   isActive: 1

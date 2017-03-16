@@ -23,6 +23,9 @@ public class MoveCamera : MonoBehaviour
     private bool map1seventh;
     private bool map1eight;
 
+    // For Map 2
+    private Vector3 goal;
+
     // Use this for initialization
     void Start()
     {
@@ -32,6 +35,9 @@ public class MoveCamera : MonoBehaviour
         {
             case 1:
                 MapOneStart();
+                break;
+            case 3:
+                goal = GameObject.FindGameObjectWithTag("Goal").transform.position;
                 break;
             default:
                 Debug.Log("Error: No map selected");
@@ -55,10 +61,11 @@ public class MoveCamera : MonoBehaviour
                 MapOnePath();
                 break;
             // map two (poof)
-            case 2:
+            case 2: 
                 break;
             // map three (exdunn)
             case 3:
+                MapTwoPath();
                 break;
             default:
                 break;
@@ -135,6 +142,18 @@ public class MoveCamera : MonoBehaviour
         {
             Up();
         }
+    }
+
+    // for map two camera moves towards goal always
+    private void MapTwoPath()
+    {
+        Debug.Log(goal);
+        transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
+    }
+
+    public void OnLeafieTeleport ()
+    {
+        transform.position = player.transform.position; 
     }
 
     void Right()

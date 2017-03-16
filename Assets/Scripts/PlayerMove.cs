@@ -31,6 +31,9 @@ public class PlayerMove : MonoBehaviour {
 
     // Player Health
     private PlayerHealth ph;
+
+    // camera
+    private GameObject myCamera;
     
     void Awake ()
     {
@@ -42,6 +45,7 @@ public class PlayerMove : MonoBehaviour {
 	void Start () {
 		canJump = true;
 		WinLoseText.text = "";
+        myCamera = GameObject.FindGameObjectWithTag("MainCamera");
 	}
 	
 	// Update is called once per frame
@@ -100,6 +104,7 @@ public class PlayerMove : MonoBehaviour {
         else if (other.gameObject.CompareTag("Portal")) {
            
             Vector3 end = other.transform.FindChild("Exit").transform.position;
+            myCamera.transform.position = transform.position;
 
             Debug.Log("child: " + end);
             transform.position = end;

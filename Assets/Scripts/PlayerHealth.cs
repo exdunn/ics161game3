@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         // resize heart
         float heartScalar = Screen.width / 5000f;
-        Debug.Log("wdith: " + Screen.width + "\nheartScalar: " + heartScalar);
+        // Debug.Log("wdith: " + Screen.width + "\nheartScalar: " + heartScalar);
 
         Vector2 size = heart.rect.size * heartScalar;
 
