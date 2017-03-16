@@ -10,11 +10,7 @@ public class MyGameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        // find which map is being played
-        mapNumber = GameObject.
-            FindGameObjectWithTag("MainCamera").
-            GetComponent<MoveCamera>().
-            mapNumber;
+        mapNumber = SceneManager.GetActiveScene().buildIndex;
 	}
 	
 	// Update is called once per frame
@@ -37,12 +33,7 @@ public class MyGameManager : MonoBehaviour {
     // restart level
     public void RestartClick ()
     {
-        if (mapNumber == 1)
-            SceneManager.LoadScene("Main Scene");
-        else if (mapNumber == 2)
-            SceneManager.LoadScene("Poof");
-        else if (mapNumber == 3)
-            SceneManager.LoadScene("Alex Level");
+        SceneManager.LoadScene(mapNumber);
     }
 
 

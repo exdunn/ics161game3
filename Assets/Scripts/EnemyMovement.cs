@@ -28,6 +28,14 @@ public class EnemyMovement : MonoBehaviour {
 	
     void FixedUpdate()
     {
+        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.GetChild(0).transform.position, Vector2.down,0.1f);
+        if (hit)
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            onGround = true;
+        }
+        else
+            onGround = false;
         if (onGround && forward)
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         if (onGround && !forward)
@@ -36,7 +44,6 @@ public class EnemyMovement : MonoBehaviour {
             forward = true;
         if (rb.position.x >= endpos_xRight && onGround)
             forward = false;
-
     }
 
     void OnCollisionEnter2D(Collision2D c)
@@ -50,16 +57,9 @@ public class EnemyMovement : MonoBehaviour {
         {
             if (rb.position.x > rbpos.x)
                 endpos_xRight = rb.position.x - 0.01f;
-            else if(rb.position.x < rbpos.y)
+            else if (rb.position.x < rbpos.y)
                 endpos_xLeft = rb.position.x + 0.01f;
         }
-        else if (c.gameObject.tag != "Bullet" || c.gameObject.tag != "Gun")
-            onGround = true;
     }
 
-    void OnCollisionExit2D(Collision2D c)
-    {
-        if (c.gameObject.tag == "Wall")
-            onGround = false;
-    }
 }
